@@ -1,4 +1,3 @@
-import './App.css';
 import {Routes, Route} from 'react-router-dom';
 
 //import components
@@ -22,6 +21,7 @@ function App() {
             <PostPage />
             <About />
             <Missing />
+            App
         </div>
     );
 }

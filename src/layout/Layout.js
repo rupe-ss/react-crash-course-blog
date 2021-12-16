@@ -3,4 +3,3 @@ const Layout = () => {
 };
 
 export default Layout;
-Layout;
