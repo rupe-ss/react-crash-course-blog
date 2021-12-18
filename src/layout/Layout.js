@@ -3,11 +3,11 @@ import Nav from 'components/Nav';
 
 const Layout = ({children}) => {
     return (
-        <div>
-            <Header />
+        <>
+            <Header title={'ReactBlog'} />
             <Nav />
             {children}
-        </div>
+        </>
     );
 };
 
