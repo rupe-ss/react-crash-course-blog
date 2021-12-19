@@ -124,7 +124,8 @@ body {
 
 .Home,
 .NewPost,
-.PostPage {
+.PostPage,
+.About {
     width: 100%;
     flex-grow: 1;
     padding: 1rem;
