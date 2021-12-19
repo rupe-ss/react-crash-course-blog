@@ -38,6 +38,12 @@ function App() {
         },
     ]);
     const [search, setSearch] = useState('');
+
+    const handleDelete = (id) => {
+        const postsList = posts.filter((post) => post.id !== id);
+        setPosts(postsList);
+        history.push('/');
+    };
     return (
         <div className='App'>
             <Layout search={search} setSearch={setSearch}>
@@ -45,7 +51,15 @@ function App() {
                     <Route exact path='/' element={<Home posts={posts} />} />
                     <Route exact path='/post' element={<NewPost />} />
                     <Route path='/edit/:id' element={<EditPost />} />
-                    <Route path='/post/:id' element={<PostPage />} />
+                    <Route
+                        path='/post/:id'
+                        element={
+                            <PostPage
+                                posts={posts}
+                                handleDelete={handleDelete}
+                            />
+                        }
+                    />
                     <Route path='/about' element={<About />} />
                     <Route path='*' element={<Missing />} />
                 </Routes>
