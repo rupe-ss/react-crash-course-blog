@@ -39,6 +39,8 @@ function App() {
     ]);
     const [search, setSearch] = useState('');
     const [searchResults, setSearchResults] = useState([]);
+    const [postTitle, setPostTitle] = useState('');
+    const [postBody, setPostBody] = useState('');
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -64,7 +66,18 @@ function App() {
                         path='/'
                         element={<Home posts={searchResults} />}
                     />
-                    <Route exact path='/post' element={<NewPost />} />
+                    <Route
+                        exact
+                        path='/post'
+                        element={
+                            <NewPost
+                                postTitle={postTitle}
+                                setPostTitle={setPostTitle}
+                                postBody={postBody}
+                                setPostBody={setPostBody}
+                            />
+                        }
+                    />
                     <Route path='/edit/:id' element={<EditPost />} />
                     <Route
                         path='/post/:id'
