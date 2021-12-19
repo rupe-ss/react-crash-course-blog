@@ -19,7 +19,7 @@ body {
     background-color: #efefef;
 }
 
-/* Chapter 18 Flex body for root id inside body */
+/* Chapter 18 Flex body for root id inside body FlexBox Component*/
 #root {
     flex-grow: 1;
     display: flex;
