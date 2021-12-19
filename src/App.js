@@ -1,5 +1,5 @@
-import {useState} from 'react';
-import {Route, Routes, useNavigate} from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 
 //import components
 import Layout from 'layout/Layout';
@@ -38,7 +38,17 @@ function App() {
         },
     ]);
     const [search, setSearch] = useState('');
+    const [searchResults, setSearchResults] = useState([]);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const filterResults = posts.filter(
+            (post) =>
+                post.body.toLowerCase().includes(search.toLowerCase()) ||
+                post.title.toLowerCase().includes(search.toLowerCase())
+        );
+        setSearchResults(filterResults.reverse());
+    }, [posts, search]);
 
     const handleDelete = (id) => {
         const postsList = posts.filter((post) => post.id !== id);
@@ -49,14 +59,18 @@ function App() {
         <div className='App'>
             <Layout search={search} setSearch={setSearch}>
                 <Routes>
-                    <Route exact path='/' element={<Home posts={posts} />} />
+                    <Route
+                        exact
+                        path='/'
+                        element={<Home posts={searchResults} />}
+                    />
                     <Route exact path='/post' element={<NewPost />} />
                     <Route path='/edit/:id' element={<EditPost />} />
                     <Route
                         path='/post/:id'
                         element={
                             <PostPage
-                                posts={posts}
+                                posts={searchResults}
                                 handleDelete={handleDelete}
                             />
                         }
