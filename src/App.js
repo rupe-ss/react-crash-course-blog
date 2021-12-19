@@ -42,11 +42,7 @@ function App() {
         <div className='App'>
             <Layout search={search} setSearch={setSearch}>
                 <Routes>
-                    <Route
-                        exact
-                        path='/'
-                        element={<Home posts={posts} setPosts={setPosts} />}
-                    />
+                    <Route exact path='/' element={<Home posts={posts} />} />
                     <Route exact path='/post' element={<NewPost />} />
                     <Route path='/edit/:id' element={<EditPost />} />
                     <Route path='/post/:id' element={<PostPage />} />
