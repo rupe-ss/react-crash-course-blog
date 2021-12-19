@@ -9,6 +9,7 @@ const Nav = ({search, setSearch}) => {
                 <input
                     id='search'
                     type='text'
+                    value={search}
                     placeholder='Search Posts'
                     onChange={(e) => setSearch(e.target.value)}></input>
             </form>

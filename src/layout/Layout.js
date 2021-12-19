@@ -1,12 +1,14 @@
 import Header from 'components/Header';
 import Nav from 'components/Nav';
+import Footer from 'components/Footer';
 
-const Layout = ({children}) => {
+const Layout = ({ children, search, setSearch }) => {
     return (
         <>
             <Header title={'ReactBlog'} />
-            <Nav />
+            <Nav search={search} setSearch={setSearch} />
             {children}
+            <Footer />
         </>
     );
 };

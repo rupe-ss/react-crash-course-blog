@@ -1,0 +1,6 @@
+{
+  "posts": [],
+  "comments": {
+    "Run json-server": "Command to run json-server without adding dependency // npx json-server -p 5000 -w data/db.json"
+  }
+}
