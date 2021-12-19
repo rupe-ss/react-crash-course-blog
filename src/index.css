@@ -7,7 +7,7 @@
 }
 
 html {
-    font-size: 20px;
+    font-size: 16px;
 }
 
 body {
@@ -50,6 +50,10 @@ body {
 
 .Header h1 {
     font-size: 1.5rem;
+}
+
+.Header svg {
+    font-size: 2rem;
 }
 
 .Footer {
@@ -125,7 +129,8 @@ body {
 .Home,
 .NewPost,
 .PostPage,
-.About {
+.About,
+.Missing {
     width: 100%;
     flex-grow: 1;
     padding: 1rem;
@@ -200,6 +205,9 @@ body {
     cursor: pointer;
 }
 
+.Missing h2,
+.PostPage h2,
+.Missing p,
 .PostPage p {
     margin-bottom: 1rem;
 }
@@ -213,6 +221,10 @@ body {
     background-color: red;
     color: #fff;
     cursor: pointer;
+}
+
+.statusMsg {
+    margin-top: 2rem;
 }
 
 @media only screen and (min-width: 610px) {
