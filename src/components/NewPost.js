@@ -1,7 +1,7 @@
 import React from 'react';
 
 const NewPost = ({
-    handelSubmit,
+    handleSubmit,
     postTitle,
     setPostTitle,
     postBody,
@@ -10,7 +10,7 @@ const NewPost = ({
     return (
         <main className='NewPost'>
             <h2>New Post</h2>
-            <form className='newPostForm' onSubmit={handelSubmit}>
+            <form className='newPostForm' onSubmit={handleSubmit}>
                 <label htmlFor='postTitle'>Title:</label>
                 <input
                     id='postTitle'

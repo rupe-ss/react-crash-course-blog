@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
+import { format } from 'date-fns';
 
 //import components
 import Layout from 'layout/Layout';
@@ -52,6 +53,19 @@ function App() {
         setSearchResults(filterResults.reverse());
     }, [posts, search]);
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const id = posts.length ? posts[posts.length - 1].id : 1;
+        const datetime = format(new Date(), 'MMMM dd, yyyy pp');
+        const newPost = { id, title: postTitle, datetime, body: postBody };
+        const allPosts = [...posts, newPost];
+        console.log(newPost);
+        setPosts(allPosts);
+        setPostTitle('');
+        setPostBody('');
+        navigate('/');
+    };
+
     const handleDelete = (id) => {
         const postsList = posts.filter((post) => post.id !== id);
         setPosts(postsList);
@@ -71,6 +85,7 @@ function App() {
                         path='/post'
                         element={
                             <NewPost
+                                handleSubmit={handleSubmit}
                                 postTitle={postTitle}
                                 setPostTitle={setPostTitle}
                                 postBody={postBody}
