@@ -42,7 +42,7 @@ function App() {
     const handleDelete = (id) => {
         const postsList = posts.filter((post) => post.id !== id);
         setPosts(postsList);
-        history.push('/');
+        // history.push('/');
     };
     return (
         <div className='App'>

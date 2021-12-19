@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 const Post = ({post}) => {
     return (
         <article className='post'>
+            {/* Here we are sinding this is to page */}
             <Link to={`/post/${post.id}`}>
                 <h2>{post.title}</h2>
                 <p className='postDate'>{post.datetime}</p>
