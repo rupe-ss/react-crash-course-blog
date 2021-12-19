@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import {Routes, Route} from 'react-router-dom';
+import {Route, Routes, useNavigate} from 'react-router-dom';
 
 //import components
 import Layout from 'layout/Layout';
@@ -38,11 +38,12 @@ function App() {
         },
     ]);
     const [search, setSearch] = useState('');
+    const navigate = useNavigate();
 
     const handleDelete = (id) => {
         const postsList = posts.filter((post) => post.id !== id);
         setPosts(postsList);
-        // history.push('/');
+        navigate('/');
     };
     return (
         <div className='App'>
