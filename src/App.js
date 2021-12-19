@@ -1,9 +1,8 @@
+import {useState} from 'react';
 import {Routes, Route} from 'react-router-dom';
 
 //import components
 import Layout from 'layout/Layout';
-import Header from 'components/Header';
-import Nav from 'components/Nav';
 import Home from 'components/Home';
 import NewPost from 'components/NewPost';
 import PostPage from 'components/PostPage';
@@ -12,11 +11,42 @@ import Missing from 'components/Missing';
 import EditPost from 'components/EditPost';
 
 function App() {
+    const [posts, setPosts] = useState([
+        {
+            id: 1,
+            title: 'My First Post',
+            datetime: 'July 01, 2021 11:17:36 AM',
+            body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis consequatur expedita, assumenda similique non optio! Modi nesciunt excepturi corrupti atque blanditiis quo nobis, non optio quae possimus illum exercitationem ipsa!',
+        },
+        {
+            id: 2,
+            title: 'My 2nd Post',
+            datetime: 'July 01, 2021 11:17:36 AM',
+            body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis consequatur expedita, assumenda similique non optio! Modi nesciunt excepturi corrupti atque blanditiis quo nobis, non optio quae possimus illum exercitationem ipsa!',
+        },
+        {
+            id: 3,
+            title: 'My 3rd Post',
+            datetime: 'July 01, 2021 11:17:36 AM',
+            body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis consequatur expedita, assumenda similique non optio! Modi nesciunt excepturi corrupti atque blanditiis quo nobis, non optio quae possimus illum exercitationem ipsa!',
+        },
+        {
+            id: 4,
+            title: 'My Fourth Post',
+            datetime: 'July 01, 2021 11:17:36 AM',
+            body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis consequatur expedita, assumenda similique non optio! Modi nesciunt excepturi corrupti atque blanditiis quo nobis, non optio quae possimus illum exercitationem ipsa!',
+        },
+    ]);
+    const [search, setSearch] = useState('');
     return (
         <div className='App'>
-            <Layout>
+            <Layout search={search} setSearch={setSearch}>
                 <Routes>
-                    <Route exact path='/' element={<Home />} />
+                    <Route
+                        exact
+                        path='/'
+                        element={<Home posts={posts} setPosts={setPosts} />}
+                    />
                     <Route exact path='/post' element={<NewPost />} />
                     <Route path='/edit/:id' element={<EditPost />} />
                     <Route path='/post/:id' element={<PostPage />} />
