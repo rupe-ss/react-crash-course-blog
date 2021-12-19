@@ -3,17 +3,12 @@ import Feed from 'components/Feed';
 
 const Home = ({posts}) => {
     return (
-        <main>
+        <main className='Home'>
             {posts.length ? (
-                posts.map((post) => <div>{post.title}</div>)
+                <Feed posts={posts} />
             ) : (
                 <p style={{marginTop: '2rem'}}>No posts to display.</p>
             )}
-            {/* {posts.length ? (
-                <div> {posts} </div>
-            ) : (
-                <p style={{marginTop: '2rem'}}>No posts to display.</p>
-            )} */}
         </main>
     );
 };
