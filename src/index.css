@@ -19,6 +19,7 @@ body {
     background-color: #efefef;
 }
 
+/* Chapter 18 Flex body for root id inside body */
 #root {
     flex-grow: 1;
     display: flex;
