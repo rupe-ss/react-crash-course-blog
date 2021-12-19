@@ -9,19 +9,14 @@ const EditPost = ({
     setEditBody,
 }) => {
     const { id } = useParams();
-    const post = posts.filter((post) => post.id.toString() === id);
-    console.log(post);
-    console.log(editTitle, editBody);
+    const post = posts.find((post) => post.id.toString() === id);
 
-    useEffect(
-        () => ({
-            if(post) {
-                setEditTitle(post.title);
-                setEditBody(post.body);
-            },
-        }),
-        [post, setEditTitle, setEditBody]
-    );
+    useEffect(() => {
+        if (post) {
+            setEditTitle(post.title);
+            setEditBody(post.body);
+        }
+    }, [post, setEditTitle, setEditBody]);
 
     return (
         <main className='NewPost'>
