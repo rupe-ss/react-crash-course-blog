@@ -112,3 +112,11 @@ body {
 .Nav li:focus a {
     cursor: pointer;
 }
+
+.Home {
+    width: 100%;
+    flex-grow: 1;
+    padding: 1rem;
+    overflow-y: auto;
+    background-color: #fff;
+}
