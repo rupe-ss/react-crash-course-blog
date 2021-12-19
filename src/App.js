@@ -51,17 +51,23 @@ function App() {
         setSearchResults(filterResults.reverse());
     }, [posts, search]);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        const id = posts.length ? posts[posts.length - 1].id : 1;
+        const id = posts.length ? posts[posts.length - 1].id + 1 : 1;
         const datetime = format(new Date(), 'MMMM dd, yyyy pp');
         const newPost = { id, title: postTitle, datetime, body: postBody };
-        const allPosts = [...posts, newPost];
-        console.log(newPost);
-        setPosts(allPosts);
-        setPostTitle('');
-        setPostBody('');
-        navigate('/');
+        try {
+            console.log(newPost);
+            const response = await api.post('/posts', newPost);
+
+            const allPosts = [...posts, response.data];
+            setPosts(allPosts);
+            setPostTitle('');
+            setPostBody('');
+            navigate('/');
+        } catch (err) {
+            console.log(`Error: ${err.message}`);
+        }
     };
 
     const handleDelete = (id) => {
