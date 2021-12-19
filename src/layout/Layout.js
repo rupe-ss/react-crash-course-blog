@@ -1,5 +1,6 @@
 import Header from 'components/Header';
 import Nav from 'components/Nav';
+import Footer from 'components/Footer';
 
 const Layout = ({ children, search, setSearch }) => {
     return (
@@ -7,6 +8,7 @@ const Layout = ({ children, search, setSearch }) => {
             <Header title={'ReactBlog'} />
             <Nav search={search} setSearch={setSearch} />
             {children}
+            <Footer />
         </>
     );
 };
