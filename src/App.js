@@ -18,6 +18,8 @@ function App() {
     const [searchResults, setSearchResults] = useState([]);
     const [postTitle, setPostTitle] = useState('');
     const [postBody, setPostBody] = useState('');
+    const [editTitle, setEditTitle] = useState('');
+    const [editBody, setEditBody] = useState('');
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -80,6 +82,7 @@ function App() {
             console.log(`Error: ${err.message}`);
         }
     };
+
     return (
         <div className='App'>
             <Layout search={search} setSearch={setSearch}>
@@ -102,7 +105,18 @@ function App() {
                             />
                         }
                     />
-                    <Route path='/edit/:id' element={<EditPost />} />
+                    <Route
+                        path='/edit/:id'
+                        element={
+                            <EditPost
+                                posts={posts}
+                                editTitle={editTitle}
+                                setEditTitle={setEditTitle}
+                                editBody={editBody}
+                                setEditBody={setEditBody}
+                            />
+                        }
+                    />
                     <Route
                         path='/post/:id'
                         element={
