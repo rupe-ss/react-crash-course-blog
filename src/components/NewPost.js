@@ -2,9 +2,9 @@ import React from 'react';
 
 const NewPost = () => {
     return (
-        <main>
+        <main className='NewPost'>
             <h2>New Post</h2>
-            <form>
+            <form className='newPostForm'>
                 <label htmlFor='postTitle'>Title:</label>
                 <input id='postTitle' type='text' required />
                 <label htmlFor='postBody'>Post:</label>
