@@ -98,17 +98,7 @@ function App() {
             <DataProvider>
                 <Layout>
                     <Routes>
-                        <Route
-                            exact
-                            path='/'
-                            element={
-                                <Home
-                                    posts={searchResults}
-                                    fetchError={fetchError}
-                                    isLoading={isLoading}
-                                />
-                            }
-                        />
+                        <Route exact path='/' element={<Home />} />
                         <Route
                             exact
                             path='/post'

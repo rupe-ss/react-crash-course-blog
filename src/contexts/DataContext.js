@@ -19,6 +19,7 @@ export const DataProvider = ({ children }) => {
     const [editTitle, setEditTitle] = useState('');
     const [editBody, setEditBody] = useState('');
     const navigate = useNavigate();
+    const { width } = useWindowSize();
     const { data, fetchError, isLoading } = useAxiosFetch(
         'http://localhost:5000/posts'
     );
@@ -26,9 +27,19 @@ export const DataProvider = ({ children }) => {
     useEffect(() => {
         setPosts(data);
     }, [data]);
-    const { width } = useWindowSize();
+
+    useEffect(() => {
+        const filterResults = posts.filter(
+            (post) =>
+                post.body.toLowerCase().includes(search.toLowerCase()) ||
+                post.title.toLowerCase().includes(search.toLowerCase())
+        );
+        setSearchResults(filterResults.reverse());
+    }, [posts, search]);
+
     return (
-        <DataContext.Provider value={{ width, search, setSearch }}>
+        <DataContext.Provider
+            value={{ width, search, setSearch, posts, fetchError, isLoading }}>
             {children}
         </DataContext.Provider>
     );
