@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import { format } from 'date-fns';
 import api from 'api/posts';
-import useWindowSize from 'hooks/useWindowSize';
 import useAxiosFetch from 'hooks/useAxiosFetch';
 import { DataProvider } from 'contexts/DataContext';
 
@@ -24,7 +23,6 @@ function App() {
     const [editTitle, setEditTitle] = useState('');
     const [editBody, setEditBody] = useState('');
     const navigate = useNavigate();
-    const { width } = useWindowSize();
     const { data, fetchError, isLoading } = useAxiosFetch(
         'http://localhost:5000/posts'
     );
@@ -98,7 +96,7 @@ function App() {
     return (
         <div className='App'>
             <DataProvider>
-                <Layout search={search} setSearch={setSearch} width={width}>
+                <Layout search={search} setSearch={setSearch}>
                     <Routes>
                         <Route
                             exact
