@@ -58,6 +58,24 @@ export const DataProvider = ({ children }) => {
         }
     };
 
+    const handleEdit = async (id) => {
+        const datetime = format(new Date(), 'MMMM dd, yyyy pp');
+        const updatedPost = { id, title: editTitle, datetime, body: editBody };
+        try {
+            const response = await api.put(`/posts/${id}`, updatedPost);
+            setPosts(
+                posts.map((post) =>
+                    post.id === id ? { ...response.data } : post
+                )
+            );
+            setEditTitle('');
+            setEditBody('');
+            navigate('/');
+        } catch (err) {
+            console.log(`Error: ${err.message}`);
+        }
+    };
+
     const handleDelete = async (id) => {
         try {
             await api.delete(`/posts/${id}`);
@@ -89,6 +107,7 @@ export const DataProvider = ({ children }) => {
                 setEditBody,
                 handleDelete,
                 searchResults,
+                handleEdit,
             }}>
             {children}
         </DataContext.Provider>

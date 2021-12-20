@@ -3,8 +3,14 @@ import { useParams, Link } from 'react-router-dom';
 import DataContext from 'contexts/DataContext';
 
 const EditPost = () => {
-    const { posts, editTitle, setEditTitle, editBody, setEditBody } =
-        useContext(DataContext);
+    const {
+        posts,
+        editTitle,
+        setEditTitle,
+        editBody,
+        setEditBody,
+        handleEdit,
+    } = useContext(DataContext);
     const { id } = useParams();
     const post = posts.find((post) => post.id.toString() === id);
 
@@ -20,7 +26,9 @@ const EditPost = () => {
             {editTitle && (
                 <>
                     <h2>Edit Post</h2>
-                    <form className='newPostForm'>
+                    <form
+                        className='newPostForm'
+                        onSubmit={(e) => e.preventDefault()}>
                         <label htmlFor='postTitle'>Title:</label>
                         <input
                             id='postTitle'
@@ -36,7 +44,11 @@ const EditPost = () => {
                             value={editBody}
                             onChange={(e) => setEditBody(e.target.value)}
                         />
-                        <button type='submit'>Submit</button>
+                        <button
+                            type='submit'
+                            onClick={() => handleEdit(post.id)}>
+                            Submit
+                        </button>
                     </form>
                 </>
             )}
