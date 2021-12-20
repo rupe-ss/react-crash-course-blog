@@ -1,9 +1,7 @@
-import {Routes, Route} from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 //import components
 import Layout from 'layout/Layout';
-import Header from 'components/Header';
-import Nav from 'components/Nav';
 import Home from 'components/Home';
 import NewPost from 'components/NewPost';
 import PostPage from 'components/PostPage';
