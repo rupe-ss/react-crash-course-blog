@@ -29,10 +29,11 @@ const useAxiosFetch = (dataUrl) => {
                 }
                 // Setting settimeout to see Loading display on screen
                 //finally {
-                //isMounted && setTimeout(() setIsLoading (false), 2000); =>
+                //isMounted && setTimeout(() => setIsLoading (false), 2000); =>
                 //}
             } finally {
-                isMounted && setIsLoading(false);
+                isMounted && setTimeout(() => setIsLoading(false), 2000);
+                // isMounted && setIsLoading(false);
             }
         };
 
