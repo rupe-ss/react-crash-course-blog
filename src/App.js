@@ -12,6 +12,7 @@ import About from 'components/About';
 import Missing from 'components/Missing';
 import EditPost from 'components/EditPost';
 import useWindowSize from 'hooks/useWindowSize';
+import useAxiosFetch from 'hooks/useAxiosFetch';
 
 function App() {
     const [posts, setPosts] = useState([]);
@@ -23,28 +24,36 @@ function App() {
     const [editBody, setEditBody] = useState('');
     const navigate = useNavigate();
     const { width } = useWindowSize();
+    const { data, fetchError, isLoading } = useAxiosFetch(
+        'http://localhost:5000/posts'
+    );
 
     useEffect(() => {
-        const fetchPosts = async () => {
-            try {
-                const response = await api.get('/posts');
-                // if (response.data) throw Error('This is just testing error.');
-                setPosts(response.data);
-            } catch (err) {
-                if (err.response) {
-                    // Not in the 200 response range
-                    console.log(err);
-                    console.log(err.response.data);
-                    console.log(err.response.status);
-                    console.log(err.response.headers);
-                } else {
-                    console.log(`Error: ${err.message}`);
-                }
-            }
-        };
+        setPosts(data);
+    }, [data]);
 
-        fetchPosts();
-    }, []);
+    //After using hook this useEffect will be different
+    // useEffect(() => {
+    //     const fetchPosts = async () => {
+    //         try {
+    //             const response = await api.get('/posts');
+    //             // if (response.data) throw Error('This is just testing error.');
+    //             setPosts(response.data);
+    //         } catch (err) {
+    //             if (err.response) {
+    //                 // Not in the 200 response range
+    //                 console.log(err);
+    //                 console.log(err.response.data);
+    //                 console.log(err.response.status);
+    //                 console.log(err.response.headers);
+    //             } else {
+    //                 console.log(`Error: ${err.message}`);
+    //             }
+    //         }
+    //     };
+
+    //     fetchPosts();
+    // }, []);
 
     useEffect(() => {
         const filterResults = posts.filter(
@@ -92,7 +101,13 @@ function App() {
                     <Route
                         exact
                         path='/'
-                        element={<Home posts={searchResults} />}
+                        element={
+                            <Home
+                                posts={searchResults}
+                                fetchError={fetchError}
+                                isLoading={isLoading}
+                            />
+                        }
                     />
                     <Route
                         exact
