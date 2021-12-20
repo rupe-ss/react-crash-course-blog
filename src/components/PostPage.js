@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import DataContext from 'contexts/DataContext';
 
-const PostPage = ({ posts, handleDelete }) => {
+const PostPage = () => {
+    const { searchResults, handleDelete } = useContext(DataContext);
     const { id } = useParams();
-    const post = posts.find((post) => post.id.toString() === id);
+    const post = searchResults.find((post) => post.id.toString() === id);
     return (
         <main className='PostPage'>
             <article className='post'>

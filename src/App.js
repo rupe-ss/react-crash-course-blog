@@ -63,17 +63,6 @@ function App() {
         setSearchResults(filterResults.reverse());
     }, [posts, search]);
 
-    const handleDelete = async (id) => {
-        try {
-            await api.delete(`/posts/${id}`);
-            const postsList = posts.filter((post) => post.id !== id);
-            setPosts(postsList);
-            navigate('/');
-        } catch (err) {
-            console.log(`Error: ${err.message}`);
-        }
-    };
-
     return (
         <div className='App'>
             <DataProvider>
@@ -82,15 +71,7 @@ function App() {
                         <Route exact path='/' element={<Home />} />
                         <Route exact path='/post' element={<NewPost />} />
                         <Route path='/edit/:id' element={<EditPost />} />
-                        <Route
-                            path='/post/:id'
-                            element={
-                                <PostPage
-                                    posts={searchResults}
-                                    handleDelete={handleDelete}
-                                />
-                            }
-                        />
+                        <Route path='/post/:id' element={<PostPage />} />
                         <Route path='/about' element={<About />} />
                         <Route path='*' element={<Missing />} />
                     </Routes>
