@@ -63,25 +63,6 @@ function App() {
         setSearchResults(filterResults.reverse());
     }, [posts, search]);
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        const id = posts.length ? posts[posts.length - 1].id + 1 : 1;
-        const datetime = format(new Date(), 'MMMM dd, yyyy pp');
-        const newPost = { id, title: postTitle, datetime, body: postBody };
-        try {
-            console.log(newPost);
-            const response = await api.post('/posts', newPost);
-
-            const allPosts = [...posts, response.data];
-            setPosts(allPosts);
-            setPostTitle('');
-            setPostBody('');
-            navigate('/');
-        } catch (err) {
-            console.log(`Error: ${err.message}`);
-        }
-    };
-
     const handleDelete = async (id) => {
         try {
             await api.delete(`/posts/${id}`);
@@ -99,19 +80,7 @@ function App() {
                 <Layout>
                     <Routes>
                         <Route exact path='/' element={<Home />} />
-                        <Route
-                            exact
-                            path='/post'
-                            element={
-                                <NewPost
-                                    handleSubmit={handleSubmit}
-                                    postTitle={postTitle}
-                                    setPostTitle={setPostTitle}
-                                    postBody={postBody}
-                                    setPostBody={setPostBody}
-                                />
-                            }
-                        />
+                        <Route exact path='/post' element={<NewPost />} />
                         <Route
                             path='/edit/:id'
                             element={

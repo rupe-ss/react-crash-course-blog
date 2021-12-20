@@ -1,5 +1,7 @@
 import { createContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { format } from 'date-fns';
+import api from 'api/posts';
 
 //Custom Hook import
 import useWindowSize from 'hooks/useWindowSize';
@@ -37,9 +39,40 @@ export const DataProvider = ({ children }) => {
         setSearchResults(filterResults.reverse());
     }, [posts, search]);
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const id = posts.length ? posts[posts.length - 1].id + 1 : 1;
+        const datetime = format(new Date(), 'MMMM dd, yyyy pp');
+        const newPost = { id, title: postTitle, datetime, body: postBody };
+        try {
+            console.log(newPost);
+            const response = await api.post('/posts', newPost);
+
+            const allPosts = [...posts, response.data];
+            setPosts(allPosts);
+            setPostTitle('');
+            setPostBody('');
+            navigate('/');
+        } catch (err) {
+            console.log(`Error: ${err.message}`);
+        }
+    };
+
     return (
         <DataContext.Provider
-            value={{ width, search, setSearch, posts, fetchError, isLoading }}>
+            value={{
+                width,
+                search,
+                setSearch,
+                posts,
+                fetchError,
+                isLoading,
+                handleSubmit,
+                postTitle,
+                setPostTitle,
+                postBody,
+                setPostBody,
+            }}>
             {children}
         </DataContext.Provider>
     );
