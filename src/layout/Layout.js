@@ -2,11 +2,11 @@ import Header from 'components/Header';
 import Nav from 'components/Nav';
 import Footer from 'components/Footer';
 
-const Layout = ({ children, search, setSearch, width }) => {
+const Layout = ({ children }) => {
     return (
         <>
-            <Header title={'ReactBlog'} width={width} />
-            <Nav search={search} setSearch={setSearch} />
+            <Header title={'ReactBlog'} />
+            <Nav />
             {children}
             <Footer />
         </>

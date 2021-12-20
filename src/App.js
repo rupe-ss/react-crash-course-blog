@@ -96,7 +96,7 @@ function App() {
     return (
         <div className='App'>
             <DataProvider>
-                <Layout search={search} setSearch={setSearch}>
+                <Layout>
                     <Routes>
                         <Route
                             exact
