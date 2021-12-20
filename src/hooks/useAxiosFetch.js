@@ -49,3 +49,5 @@ const useAxiosFetch = (dataUrl) => {
 
     return { data, fetchError, isLoading };
 };
+
+export default useAxiosFetch;
