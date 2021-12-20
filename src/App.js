@@ -1,8 +1,4 @@
-import { useEffect, useState } from 'react';
-import { Route, Routes, useNavigate } from 'react-router-dom';
-import { format } from 'date-fns';
-import api from 'api/posts';
-import useAxiosFetch from 'hooks/useAxiosFetch';
+import { Route, Routes } from 'react-router-dom';
 import { DataProvider } from 'contexts/DataContext';
 
 //import components
@@ -15,22 +11,6 @@ import Missing from 'components/Missing';
 import EditPost from 'components/EditPost';
 
 function App() {
-    const [posts, setPosts] = useState([]);
-    const [search, setSearch] = useState('');
-    const [searchResults, setSearchResults] = useState([]);
-    const [postTitle, setPostTitle] = useState('');
-    const [postBody, setPostBody] = useState('');
-    const [editTitle, setEditTitle] = useState('');
-    const [editBody, setEditBody] = useState('');
-    const navigate = useNavigate();
-    const { data, fetchError, isLoading } = useAxiosFetch(
-        'http://localhost:5000/posts'
-    );
-
-    useEffect(() => {
-        setPosts(data);
-    }, [data]);
-
     //After using hook this useEffect will be different
     // useEffect(() => {
     //     const fetchPosts = async () => {
@@ -53,15 +33,6 @@ function App() {
 
     //     fetchPosts();
     // }, []);
-
-    useEffect(() => {
-        const filterResults = posts.filter(
-            (post) =>
-                post.body.toLowerCase().includes(search.toLowerCase()) ||
-                post.title.toLowerCase().includes(search.toLowerCase())
-        );
-        setSearchResults(filterResults.reverse());
-    }, [posts, search]);
 
     return (
         <div className='App'>
