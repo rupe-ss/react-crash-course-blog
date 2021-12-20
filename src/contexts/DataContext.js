@@ -72,6 +72,10 @@ export const DataProvider = ({ children }) => {
                 setPostTitle,
                 postBody,
                 setPostBody,
+                editTitle,
+                setEditTitle,
+                editBody,
+                setEditBody,
             }}>
             {children}
         </DataContext.Provider>
